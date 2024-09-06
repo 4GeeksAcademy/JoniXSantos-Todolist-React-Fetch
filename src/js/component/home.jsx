@@ -11,6 +11,7 @@ const Home = () => {
 		const uri = `${host}/todo/users/JoniXSantos`;
 		const response = await fetch(uri);
 		if (!response.ok) {
+			if(response.status === 404) return createUser()
 			console.log('Error: ', response.status, response.statusText);
 			return;
 		};
@@ -54,6 +55,19 @@ const Home = () => {
 			return;
 		}
 		getData();
+	}
+
+	const createUser = async() =>{
+		const uri = `${host}/todo/users/JoniXSantos`
+		const options = {
+			method: 'POST'
+		}
+		const response = await fetch(uri,options)
+
+		if(!response.ok) console.log(response.status)
+
+		getData()
+
 	}
 
 	useEffect(() => {
